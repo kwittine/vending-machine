@@ -43,6 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\FileIO.cs" />
+    <Compile Include="Classes\Item.cs" />
+    <Compile Include="Classes\ItemTypeCandy.cs" />
+    <Compile Include="Classes\ItemTypeChip.cs" />
+    <Compile Include="Classes\ItemTypeDrink.cs" />
+    <Compile Include="Classes\ItemTypeGum.cs" />
+    <Compile Include="Classes\Transaction.cs" />
+    <Compile Include="Classes\UI.cs" />
+    <Compile Include="Classes\VendingMachine.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -50,7 +59,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Classes\" />
+    <Content Include="VendingMachine.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
