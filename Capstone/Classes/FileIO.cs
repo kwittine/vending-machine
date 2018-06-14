@@ -10,16 +10,9 @@ namespace Capstone.Classes
 	public class FileIO
 
 	{
-		//Build a method to return a dictionary
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <returns></returns>
 		public Dictionary<string, List<Item>> GetVendingMachineStock()
 		{
-			//Create a dictionary
 			Dictionary<string, List<Item>> vendingStock = new Dictionary<string, List<Item>>();
-
 			//Select Path to read
 			string path = Path.Combine(Environment.CurrentDirectory, "VendingMachine.txt");
 
@@ -35,8 +28,6 @@ namespace Capstone.Classes
 						string[] protoItem = line.Split('|');
 
 						string itemType = protoItem[3];
-
-						string newKey = protoItem[0];
 
 						decimal cost = decimal.Parse(protoItem[2]);
 

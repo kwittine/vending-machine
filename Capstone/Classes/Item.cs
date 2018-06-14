@@ -11,12 +11,12 @@ namespace Capstone.Classes
 		/// <summary>
 		/// Sets Name of Item
 		/// </summary>
-		string Name { get; set; }
+		public string Name { get; set; }
 
 		/// <summary>
 		/// Sets Cost of Item
 		/// </summary>
-		decimal Cost { get; set; }
+		public decimal Cost { get; set; }
 
 		//Constructor
 		public Item(string name, decimal cost)

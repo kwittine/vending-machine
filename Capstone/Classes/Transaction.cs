@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Capstone.Classes;
 
 namespace Capstone.Classes
 {
 	public class Transaction
 	{
-		decimal Balance { get; set; }
+		public decimal Balance { get; set; }
 
-		public decimal FeedMoney(decimal userInputMoney)
+		public void FeedMoney(int userInputMoney)
 		{
-			return Balance;
+			Balance += (decimal)userInputMoney;
 		}
 
 		public decimal MakePurchase(decimal costOfItem)
@@ -25,18 +26,20 @@ namespace Capstone.Classes
 			else
 			{
 				Balance -= costOfItem;
-				//Call Dispense Item from vending machine class - 
+				
 				return Balance;
 
 			}
 		}
 
-		public decimal GiveChange()
+		public int[] GiveChange()
 		{
+			int[] change = new int[3];
+
 			if (Balance >= 0.25M)
 			{
-
 				int quarters = (int)(Balance / 0.25M);
+				change[0] = quarters;
 				Balance = Balance - (0.25M * quarters);
 			}
 
@@ -44,19 +47,21 @@ namespace Capstone.Classes
 			{
 
 				int dimes = (int)(Balance / 0.10M);
+				change[1] = dimes;
 				Balance = Balance - (0.10M * dimes);
 			}
 
 			if (Balance >= 0.05M)
 			{
 				int nickles = (int)(Balance / 0.05M);
+				change[2] = nickles;
 				Balance = Balance - (0.05M * nickles);
 			}
 
-			return Balance;//Pass change into another method that specifies quarters dimes and nickles
+			return change;
 		}
 	}
 
 
 }
-}
+
