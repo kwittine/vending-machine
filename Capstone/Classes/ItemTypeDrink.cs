@@ -29,7 +29,7 @@ namespace Capstone.Classes
 		/// <returns>Item type sound</returns>
 		public override string MakeSound()
 		{
-			return "Glug Glug, Yum!";
+			return ($"You drank {Name}. Glug Glug, Yum!");
 		}
 	}
 }

@@ -9,29 +9,48 @@ namespace Capstone.Classes
 {
 	public class Transaction
 	{
+		/// <summary>
+		/// Property for Balance
+		/// </summary>
 		public decimal Balance { get; set; }
 
+		/// <summary>
+		/// Feed Money
+		/// </summary>
+		/// <param name="userInputMoney"></param>
 		public void FeedMoney(int userInputMoney)
 		{
 			Balance += (decimal)userInputMoney;
 		}
 
-		public decimal MakePurchase(decimal costOfItem)
+		/// <summary>
+		/// Make purchase method
+		/// </summary>
+		/// <param name="costOfItem"></param>
+		/// <returns></returns>
+		public bool  MakePurchase(decimal costOfItem)
 		{
 			if (costOfItem > Balance)
 			{
 				//Make message in UI : "Insufficient Funds to Purchase Item"
-				return Balance; // 
+				Console.WriteLine($"Your Balance is: {Balance:C}. The cost of the item is: {costOfItem:C}.");
+				Console.WriteLine($"Please insert more money to make a purchase");
+				return false;
 			}
 			else
 			{
 				Balance -= costOfItem;
-				
-				return Balance;
+				return true;
 
 			}
+
 		}
 
+
+		/// <summary>
+		/// Give Change Method
+		/// </summary>
+		/// <returns></returns>
 		public int[] GiveChange()
 		{
 			int[] change = new int[3];
@@ -60,6 +79,12 @@ namespace Capstone.Classes
 
 			return change;
 		}
+
+		//SALES REPORT
+
+		
+
+
 	}
 
 

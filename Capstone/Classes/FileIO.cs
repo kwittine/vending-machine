@@ -10,6 +10,10 @@ namespace Capstone.Classes
 	public class FileIO
 
 	{
+		/// <summary>
+		/// Method that returns vending machine stock
+		/// </summary>
+		/// <returns></returns>
 		public Dictionary<string, List<Item>> GetVendingMachineStock()
 		{
 			Dictionary<string, List<Item>> vendingStock = new Dictionary<string, List<Item>>();
@@ -69,7 +73,50 @@ namespace Capstone.Classes
 				Console.WriteLine("Error Reading File " + ex.Message);
 			}
 			return vendingStock;
+
 		}
+
+
+		//AUDIT 
+
+		public void LogTransaction(string itemName, string itemPosition, decimal itemCost, decimal totalBalance)
+		{
+			string path = Path.Combine(Environment.CurrentDirectory, "log.txt");
+
+			try
+			{
+				using (StreamWriter sw = new StreamWriter(path, true))
+				{
+					sw.WriteLine($"{DateTime.Now.ToString()} {itemName} {itemPosition} {itemCost:C} {totalBalance:C} ");
+				}
+			}
+			catch (IOException ex)
+			{
+				Console.WriteLine("An error has occured" + ex.Message);
+			}
+		
+		}
+		public void LogTransaction(string nameOfTransaction, decimal transactionAmount, decimal totalBalance)
+		{
+			string path = Path.Combine(Environment.CurrentDirectory, "log.txt");
+
+			try
+			{
+				using (StreamWriter sw = new StreamWriter(path, true))
+				{
+					sw.WriteLine($"{DateTime.Now.ToString()} {nameOfTransaction} {transactionAmount:C} {totalBalance:C}");
+				}
+			}
+			catch (IOException ex)
+			{
+				Console.WriteLine("An error has occured" + ex.Message);
+			}
+
+		}
+
+
+		//SALES REPORT
+
 
 	}
 }

@@ -19,6 +19,7 @@ namespace Capstone.Classes
 			: base(name, cost)
 		{
 		}
+		
 
 		/// <summary>
 		/// Sets Item type sound
@@ -26,7 +27,7 @@ namespace Capstone.Classes
 		/// <returns>Item type sound</returns>
 		public override string MakeSound()
 		{
-			return "Munch Munch, Yum!";
+			return ($"You ate {Name}. Munch Munch, Yum!");
 		}
 	}
 }
