@@ -11,6 +11,7 @@ namespace Capstone.Classes
 		private FileIO fileIO = new FileIO();
 		public Dictionary<string, List<Item>> Stock { get; set; }
 		public List<Item> PurchasedItems { get; set; }
+		public List<Item> TotalPurchasedItems { get; set; }
 		private Transaction transaction = new Transaction();
 
 		public decimal Balance
@@ -26,6 +27,7 @@ namespace Capstone.Classes
 		{
 			this.Stock = stock;
 			PurchasedItems = new List<Item>();
+			TotalPurchasedItems = new List<Item>();
 		}
 
 		public void DispenseItem(string position)
@@ -44,6 +46,7 @@ namespace Capstone.Classes
 					if (transaction.MakePurchase(Stock[position][0].Cost))
 					{
 						PurchasedItems.Add(Stock[position][0]);
+						TotalPurchasedItems.Add(Stock[position][0]);
 
 						fileIO.LogTransaction(Stock[position][0].Name, position, Stock[position][0].Cost, Balance);
 						Console.WriteLine($"{Stock[position][0].Name} purchased!");

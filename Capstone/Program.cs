@@ -18,6 +18,7 @@ namespace Capstone
 			UI ui = new UI(vendingMachine);
 
 			ui.MainScreen();
+			fileIO.SalesReport(vendingMachine.TotalPurchasedItems);
         }
     }
 }

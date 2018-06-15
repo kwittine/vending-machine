@@ -21,11 +21,10 @@ namespace Capstone.Classes
 		{
 			while (true)
 			{
-				//Console.Clear();
 				Console.WriteLine("Main Menu:");
 				Console.WriteLine("1. Display Vending Machine Items");
 				Console.WriteLine("2. Purchase");
-				//Console.WriteLine("3. Quit");
+				Console.WriteLine("3. Quit");
 
 				Console.Write("Please make a selection: ");
 				string input = Console.ReadLine();
@@ -40,16 +39,24 @@ namespace Capstone.Classes
 					Console.WriteLine();
 					PurchaseSubmenu();
 				}
-				//else if (input == "3")
-				//{
-				//	Console.WriteLine("Quitting...");
-				//	return;
-				//}
+				else if (input == "3")
+				{
+					Console.WriteLine("Sales Report created...");
+					Quit();
+				}
 				else
 				{
 					Console.WriteLine("Please enter a valid selection!");
 				}
 			}
+			
+		}
+
+		public void Quit()
+		{
+			FileIO fileIO = new FileIO();
+			fileIO.SalesReport(vendingMachine.TotalPurchasedItems);
+			Environment.Exit(0);
 		}
 
 		// Method DisplayInventory
@@ -91,7 +98,6 @@ namespace Capstone.Classes
 						Console.WriteLine();
 						Console.Write("Enter dollar amount to feed into the vending machine: ");
 
-
 						try
 						{
 							int dollarsEntered = int.Parse(Console.ReadLine());
@@ -105,9 +111,8 @@ namespace Capstone.Classes
 						{
 							Console.WriteLine();
 							Console.WriteLine($"The dollar amount you have entered is not valid.");
-							
-						}
 
+						}
 						break;
 
 					}
@@ -129,13 +134,13 @@ namespace Capstone.Classes
 						Console.WriteLine($"{change[0]} quarters, {change[1]} dimes, {change[2]} nickles");
 						Console.WriteLine();
 
-						foreach (Item purchasedItem in vendingMachine.PurchasedItems)
+						while (vendingMachine.PurchasedItems.Count != 0)
 						{
-							Console.WriteLine($"{purchasedItem.MakeSound()}");
+							Console.WriteLine($"{vendingMachine.PurchasedItems[0].MakeSound()}");
+							vendingMachine.PurchasedItems.RemoveAt(0);
 						}
 						Console.ReadLine();
 						MainScreen();
-
 					}
 					else
 					{
@@ -146,19 +151,9 @@ namespace Capstone.Classes
 					
 					
 				}
-				//Call Main Menu
-				//MainScreen();
+
 			}
 		}
 
-		// Method Out of Stock
-		// To display a message to user that the selected item is out of stock
-
-		// Method Invalid Selection
-		// To display a message to user that they have entered an invalid item
-
-		// Method Finish transaction
-		// Need to get the List of purchased items and foreach through
-		// Print out each item name and the noise
 	}
 }

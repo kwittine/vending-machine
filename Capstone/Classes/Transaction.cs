@@ -34,18 +34,16 @@ namespace Capstone.Classes
 			{
 				//Make message in UI : "Insufficient Funds to Purchase Item"
 				Console.WriteLine($"Your Balance is: {Balance:C}. The cost of the item is: {costOfItem:C}.");
-				Console.WriteLine($"Please insert more money to make a purchase");
+				Console.WriteLine($"Please insert more money to make a purchase!");
 				return false;
 			}
 			else
 			{
 				Balance -= costOfItem;
 				return true;
-
 			}
 
 		}
-
 
 		/// <summary>
 		/// Give Change Method
@@ -80,13 +78,7 @@ namespace Capstone.Classes
 			return change;
 		}
 
-		//SALES REPORT
-
-		
-
-
 	}
-
 
 }
 

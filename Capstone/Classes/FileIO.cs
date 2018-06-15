@@ -57,9 +57,7 @@ namespace Capstone.Classes
 							{
 								stockPerLocation.Add(new ItemTypeDrink(protoItem[1], cost));
 							}
-						}
-
-						//Set values of list by using for loop				
+						}			
 						vendingStock[protoItem[0]] = stockPerLocation;
 
 
@@ -96,6 +94,7 @@ namespace Capstone.Classes
 			}
 		
 		}
+
 		public void LogTransaction(string nameOfTransaction, decimal transactionAmount, decimal totalBalance)
 		{
 			string path = Path.Combine(Environment.CurrentDirectory, "log.txt");
@@ -116,7 +115,44 @@ namespace Capstone.Classes
 
 
 		//SALES REPORT
+		public void SalesReport(List<Item> totalPurchasedItems)
+		{
+			decimal totalSalesBalance = 0.0M;
+			Dictionary<string, int> salesReport = new Dictionary<string, int>();
 
+			string path = Path.Combine(Environment.CurrentDirectory, "SalesReport.txt");
+
+			try
+			{
+				using (StreamWriter sw = new StreamWriter(path, true))
+				{
+					foreach (Item item in totalPurchasedItems)
+					{
+						if (salesReport.ContainsKey(item.Name))
+						{
+							salesReport[item.Name]++;
+						}
+						else
+						{
+							salesReport[item.Name] = 1;
+						}
+						totalSalesBalance += item.Cost;
+					}
+
+					foreach (var kvp in salesReport)
+					{
+						sw.WriteLine($"{kvp.Key}|{kvp.Value}");
+					}
+
+					sw.WriteLine();
+					sw.WriteLine($"**TOTAL SALES** {totalSalesBalance:C}");
+				}
+			}
+			catch (IOException ex)
+			{
+				Console.WriteLine("An error has occured" + ex.Message);
+			}
+		}
 
 	}
 }
