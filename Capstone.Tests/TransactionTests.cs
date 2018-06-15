@@ -24,7 +24,7 @@ namespace Capstone.Tests
 
 		//	transaction.FeedMoney(-5);
 
-		//	Assert.ThrowsException<
+		//	Assert.AreEqual(0, transaction.Balance);
 		//}
 
 		[TestMethod]
@@ -39,18 +39,27 @@ namespace Capstone.Tests
 		}
 
 		[TestMethod]
-		public void Can_Make_Change()
+		public void Can_Make_Change_And_Reset_Balance()
 		{
 			Transaction transaction = new Transaction();
 			transaction.Balance = 1.65M;
 			int[] result = transaction.GiveChange();
 			int[] answer = new int[3] { 6, 1, 1 };
-			
 
 			Assert.IsTrue(result.Length == answer.Length);
 			Assert.AreEqual(answer[0], result[0]);
 			Assert.AreEqual(answer[1], result[1]);
 			Assert.AreEqual(answer[2], result[2]);
+			Assert.AreEqual(0.0M, transaction.Balance);
+		}
+
+		[TestMethod]
+		public void Cant_Purchase_Item_Pricer_ThanBalance()
+		{
+			Transaction transaction = new Transaction();
+			bool result = transaction.MakePurchase(2.5M);
+
+			Assert.IsFalse(result);
 		}
     }
 }
