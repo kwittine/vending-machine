@@ -43,13 +43,14 @@ namespace Capstone.Tests
 		{
 			Transaction transaction = new Transaction();
 			transaction.Balance = 1.65M;
-			int[] result = transaction.GiveChange();
-			int[] answer = new int[3] { 6, 1, 1 };
+			Change result = transaction.GiveChange();
+            Change answer = new Change(6, 1, 1);
+			//int[] answer = new int[3] { 6, 1, 1 };
 
-			Assert.IsTrue(result.Length == answer.Length);
-			Assert.AreEqual(answer[0], result[0]);
-			Assert.AreEqual(answer[1], result[1]);
-			Assert.AreEqual(answer[2], result[2]);
+			//Assert.IsTrue(result.Length == answer.Length);
+			Assert.AreEqual(answer.NumberOfQuarters, result.NumberOfQuarters);
+			Assert.AreEqual(answer.NumberOfDimes, result.NumberOfDimes);
+			Assert.AreEqual(answer.NumberOfNickels, result.NumberOfNickels);
 			Assert.AreEqual(0.0M, transaction.Balance);
 		}
 

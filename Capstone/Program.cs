@@ -16,9 +16,7 @@ namespace Capstone
 			VendingMachine vendingMachine = new VendingMachine(inventory);
 
 			UI ui = new UI(vendingMachine);
-
 			ui.MainScreen();
-			fileIO.SalesReport(vendingMachine.TotalPurchasedItems);
         }
     }
 }

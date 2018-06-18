@@ -19,8 +19,6 @@ namespace Capstone.Classes
 		public ItemTypeDrink(string name, decimal cost)
 			: base(name, cost)
 		{
-
-
 		}
 
 		/// <summary>

@@ -49,33 +49,29 @@ namespace Capstone.Classes
 		/// Give Change Method
 		/// </summary>
 		/// <returns></returns>
-		public int[] GiveChange()
+		public Change GiveChange()
 		{
-			int[] change = new int[3];
+            int quarters = 0, dimes = 0, nickles = 0;
 
 			if (Balance >= 0.25M)
 			{
-				int quarters = (int)(Balance / 0.25M);
-				change[0] = quarters;
+				quarters = (int)(Balance / 0.25M);				
 				Balance = Balance - (0.25M * quarters);
 			}
 
 			if (Balance >= 0.10M)
 			{
-
-				int dimes = (int)(Balance / 0.10M);
-				change[1] = dimes;
+				dimes = (int)(Balance / 0.10M);				
 				Balance = Balance - (0.10M * dimes);
 			}
 
 			if (Balance >= 0.05M)
 			{
-				int nickles = (int)(Balance / 0.05M);
-				change[2] = nickles;
+				nickles = (int)(Balance / 0.05M);				
 				Balance = Balance - (0.05M * nickles);
 			}
 
-			return change;
+            return new Change(quarters, dimes, nickles);
 		}
 
 	}

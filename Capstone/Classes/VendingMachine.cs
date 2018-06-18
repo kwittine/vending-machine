@@ -9,7 +9,7 @@ namespace Capstone.Classes
 	public class VendingMachine
 	{
 		private FileIO fileIO = new FileIO();
-		public Dictionary<string, List<Item>> Stock { get; set; }
+		public Dictionary<string, List<Item>> Stock { get; }
 		public List<Item> PurchasedItems { get; set; }
 		public List<Item> TotalPurchasedItems { get; set; }
 		private Transaction transaction = new Transaction();
@@ -53,7 +53,6 @@ namespace Capstone.Classes
 
 						// Remove an item from the Dictionary's stock
 						Stock[position].RemoveAt(0);
-
 					}
 				}
 				// There is no inventory left
@@ -61,7 +60,6 @@ namespace Capstone.Classes
 				{
 					// Tell user out of stock
 					Console.WriteLine($"{position} is out of stock.");
-
 				}
 			}
 			// User entered invalid position
@@ -69,9 +67,7 @@ namespace Capstone.Classes
 			{
 				// Tell user invalid position
 				Console.WriteLine($"Please enter a valid position.");
-
 			}
-
 		}
 
 		public void FeedMoney(int moneyEntered)
@@ -80,10 +76,10 @@ namespace Capstone.Classes
 			fileIO.LogTransaction("FEED MONEY:", (decimal)moneyEntered, Balance);
 		}
 
-		public int[] GiveChange()
+		public Change GiveChange()
 		{
 			decimal balanceBeforeChange = Balance;
-			int[] change = transaction.GiveChange();
+			Change change = transaction.GiveChange();
 			fileIO.LogTransaction("GIVE CHANGE:", balanceBeforeChange, Balance);
 			return change;
 		}
