@@ -8,7 +8,6 @@ namespace Capstone.Classes
 {
 	public class ItemTypeCandy : Item
 	{
-
 		/// <summary>
 		/// To set input value in list
 		/// </summary>
@@ -20,7 +19,6 @@ namespace Capstone.Classes
 		{
 		}
 		
-
 		/// <summary>
 		/// Sets Item type sound
 		/// </summary>

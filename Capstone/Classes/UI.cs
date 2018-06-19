@@ -62,6 +62,7 @@ namespace Capstone.Classes
         public void DisplayInventory()
         {
             Console.Clear();
+
             foreach (KeyValuePair<string, List<Item>> kvp in vendingMachine.Stock)
             {
                 if (kvp.Value.Count == 0)
@@ -73,6 +74,7 @@ namespace Capstone.Classes
                     Console.WriteLine($"{kvp.Key} {kvp.Value[0].Name} {kvp.Value[0].Cost:C} {kvp.Value.Count}");
                 }
             }
+
             Console.WriteLine();
         }
 
@@ -90,7 +92,6 @@ namespace Capstone.Classes
                 Console.Write("Please make a selection: ");
                 string input = Console.ReadLine();
 
-
                 if (input == "1")
                 {
                     Console.WriteLine();
@@ -98,12 +99,20 @@ namespace Capstone.Classes
 
                     if (int.TryParse(Console.ReadLine(), out int dollarsEntered))
                     {
-                        if (dollarsEntered > 0)
-                        {
-                            Console.WriteLine();
-                            vendingMachine.FeedMoney(dollarsEntered);
-                        }
+						// Accepted dollar bills
+						if ((dollarsEntered == 1) || (dollarsEntered == 2) || (dollarsEntered == 5) || (dollarsEntered == 10))
+						{
+							Console.WriteLine();
+							vendingMachine.FeedMoney(dollarsEntered);
+						}
+						// Not an accepted bill amount
+						else
+						{
+							Console.WriteLine();
+							Console.WriteLine($"The dollar amount you have entered is not valid.");
+						}
                     }
+					// User tried to enter something other than integer
                     else
                     {
                         Console.WriteLine();
@@ -129,21 +138,19 @@ namespace Capstone.Classes
 
                     while (vendingMachine.PurchasedItems.Count != 0)
                     {
-                        Console.WriteLine($"{vendingMachine.PurchasedItems[0].MakeSound()}");
-                        vendingMachine.PurchasedItems.RemoveAt(0);
-                    }
+						//Console.WriteLine($"{vendingMachine.PurchasedItems[0].MakeSound()}");
+						//vendingMachine.PurchasedItems.RemoveAt(0);
+						Console.WriteLine($"{vendingMachine.ConsumeItems()}");
+					}
+
                     Console.ReadLine();
-                    //MainScreen();
                     break;
                 }
                 else
                 {
                     Console.WriteLine("Please enter a valid selection!");
                 }
-
-
             }
         }
-
     }
 }

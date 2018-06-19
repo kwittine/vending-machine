@@ -57,26 +57,21 @@ namespace Capstone.Classes
 							{
 								stockPerLocation.Add(new ItemTypeDrink(protoItem[1], cost));
 							}
-						}			
+						}		
+						
 						vendingStock[protoItem[0]] = stockPerLocation;
-
-
-
 					}
-
 				}
 			}
 			catch (IOException ex)
 			{
 				Console.WriteLine("Error Reading File " + ex.Message);
 			}
-			return vendingStock;
 
+			return vendingStock;
 		}
 
-
-		//AUDIT 
-
+		//AUDIT
 		public void LogTransaction(string itemName, string itemPosition, decimal itemCost, decimal totalBalance)
 		{
 			string path = Path.Combine(Environment.CurrentDirectory, "log.txt");
@@ -92,7 +87,6 @@ namespace Capstone.Classes
 			{
 				Console.WriteLine("An error has occured" + ex.Message);
 			}
-		
 		}
 
 		public void LogTransaction(string nameOfTransaction, decimal transactionAmount, decimal totalBalance)
@@ -110,9 +104,7 @@ namespace Capstone.Classes
 			{
 				Console.WriteLine("An error has occured" + ex.Message);
 			}
-
 		}
-
 
 		//SALES REPORT
 		public void SalesReport(List<Item> totalPurchasedItems)
@@ -136,6 +128,7 @@ namespace Capstone.Classes
 						{
 							salesReport[item.Name] = 1;
 						}
+
 						totalSalesBalance += item.Cost;
 					}
 
@@ -153,6 +146,5 @@ namespace Capstone.Classes
 				Console.WriteLine("An error has occured" + ex.Message);
 			}
 		}
-
 	}
 }

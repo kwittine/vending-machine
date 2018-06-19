@@ -18,7 +18,7 @@ namespace Capstone.Classes
 		/// </summary>
 		public decimal Cost { get; set; }
 
-		//Constructor
+		// Constructor
 		public Item(string name, decimal cost)
 		{
 			this.Name = name;
@@ -30,9 +30,5 @@ namespace Capstone.Classes
 		/// </summary>
 		/// <returns></returns>
 		public abstract string MakeSound();
-		
-
-
-
 	}
 }

@@ -8,8 +8,6 @@ namespace Capstone.Classes
 {
 	public class ItemTypeDrink : Item
 	{
-
-
 		/// <summary>
 		/// To set input value in list
 		/// </summary>

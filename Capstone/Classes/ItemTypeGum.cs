@@ -8,8 +8,6 @@ namespace Capstone.Classes
 {
 	public class ItemTypeGum : Item
 	{
-	
-
 		/// <summary>
 		/// To set input value in list
 		/// </summary>

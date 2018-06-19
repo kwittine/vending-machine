@@ -28,7 +28,7 @@ namespace Capstone.Classes
 		/// </summary>
 		/// <param name="costOfItem"></param>
 		/// <returns></returns>
-		public bool  MakePurchase(decimal costOfItem)
+		public bool MakePurchase(decimal costOfItem)
 		{
 			if (costOfItem > Balance)
 			{
@@ -42,7 +42,6 @@ namespace Capstone.Classes
 				Balance -= costOfItem;
 				return true;
 			}
-
 		}
 
 		/// <summary>
@@ -51,30 +50,28 @@ namespace Capstone.Classes
 		/// <returns></returns>
 		public Change GiveChange()
 		{
-            int quarters = 0, dimes = 0, nickles = 0;
+			int quarters = 0, dimes = 0, nickles = 0;
 
 			if (Balance >= 0.25M)
 			{
-				quarters = (int)(Balance / 0.25M);				
+				quarters = (int)(Balance / 0.25M);
 				Balance = Balance - (0.25M * quarters);
 			}
 
 			if (Balance >= 0.10M)
 			{
-				dimes = (int)(Balance / 0.10M);				
+				dimes = (int)(Balance / 0.10M);
 				Balance = Balance - (0.10M * dimes);
 			}
 
 			if (Balance >= 0.05M)
 			{
-				nickles = (int)(Balance / 0.05M);				
+				nickles = (int)(Balance / 0.05M);
 				Balance = Balance - (0.05M * nickles);
 			}
 
-            return new Change(quarters, dimes, nickles);
+			return new Change(quarters, dimes, nickles);
 		}
-
 	}
-
 }
 

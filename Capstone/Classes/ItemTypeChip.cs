@@ -8,8 +8,6 @@ namespace Capstone.Classes
 {
 	public class ItemTypeChip : Item
 	{
-	
-
 		/// <summary>
 		/// To set input value in list
 		/// </summary>
@@ -19,7 +17,6 @@ namespace Capstone.Classes
 		public ItemTypeChip( string name, decimal cost)
 			: base(name, cost)
 		{
-		
 		}
 
 		/// <summary>

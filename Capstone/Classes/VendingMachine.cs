@@ -10,7 +10,11 @@ namespace Capstone.Classes
 	{
 		private FileIO fileIO = new FileIO();
 		public Dictionary<string, List<Item>> Stock { get; }
-		public List<Item> PurchasedItems { get; set; }
+
+		// This variable is for one set of transactions for customer
+		public List<Item> PurchasedItems { get; private set; }
+
+		// This variable is for all items purchased while program is running for the final generated Sales Report
 		public List<Item> TotalPurchasedItems { get; set; }
 		private Transaction transaction = new Transaction();
 
@@ -21,7 +25,6 @@ namespace Capstone.Classes
 				return transaction.Balance;
 			}
 		}
-
 
 		public VendingMachine(Dictionary<string, List<Item>> stock)
 		{
@@ -35,12 +38,10 @@ namespace Capstone.Classes
 			// User selects valid position
 			if (Stock.ContainsKey(position))
 			{
-			
 				// There is at least one item within the position
 				if (Stock[position].Count != 0) 
 				{
 					// Call Transaction Class --> Make purchase Method
-					//transaction.MakePurchase(Stock[position][0].Cost);
 
 					// Add item to List of purchased items in the transaction
 					if (transaction.MakePurchase(Stock[position][0].Cost))
@@ -84,7 +85,13 @@ namespace Capstone.Classes
 			return change;
 		}
 
+		public string ConsumeItems()
+		{
+			string sound = PurchasedItems[0].MakeSound();
 
-		
+			PurchasedItems.RemoveAt(0);
+
+			return sound;
+		}
 	}
 }
